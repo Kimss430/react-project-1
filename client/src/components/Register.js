@@ -96,7 +96,7 @@ function Register() {
           multiline
           rows={4}
           value={content} // 내용 상태
-          onChange={(e) => setContent(e.target.value)} // 내용 상태 업데이트
+          onChange={(e) => setContent(e.target.value)} // 내용 상태 업데이트 
         />
 
         <Box display="flex" alignItems="center" margin="normal" fullWidth>
