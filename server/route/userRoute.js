@@ -10,7 +10,7 @@ const path = require('path');
 
 router.route("/")
   .get((req, res) => {
-    const query = 'SELECT * FROM TBL_USER';
+    const query = 'SELECT * FROM tbl_user';
     connection.query(query, (err, results) => {
       if (err) {
         console.error('쿼리 실행 실패:', err);
@@ -22,7 +22,7 @@ router.route("/")
   })
   .post((req, res) => {
     const { email, password } = req.body;
-    const query = 'SELECT * FROM TBL_USER WHERE user_id = ? AND pwd = ?';
+    const query = 'SELECT * FROM tbl_user WHERE user_id = ? AND pwd = ?';
     connection.query(query, [email, password], (err, results) => {
       if (err) throw err;
       if (results.length > 0) {
@@ -46,7 +46,7 @@ router.route("/")
 router.route("/insert")
   .post((req, res) => {
     const { name, email, pwd, gender } = req.body;
-    const query = 'INSERT INTO TBL_USER(name, user_id, pwd, gender) VALUES(?, ?, ?, ?)';
+    const query = 'INSERT INTO tbl_user(name, user_id, pwd, gender) VALUES(?, ?, ?, ?)';
 
     connection.query(query, [name, email, pwd, gender], (err, results) => {
       if (err) {
@@ -105,7 +105,7 @@ router.route("/comments")
 // 사용자 정보 조회 라우트
 router.get('/', verifyToken, (req, res) => {
   const userId = req.user.userId; // 토큰에서 가져온 userId
-  const query = 'SELECT * FROM TBL_USER WHERE id = ?';
+  const query = 'SELECT * FROM tbl_user WHERE id = ?';
 
   connection.query(query, [userId], (err, results) => {
     if (err) return res.status(500).json({ success: false, message: '서버 오류' });
